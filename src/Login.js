@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Copyright from './Copyright'
-
+import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
 
 class Login extends Component {
@@ -20,6 +20,7 @@ class Login extends Component {
     }
     submitlogin(){
         if(this.state.email ==="kallemk8@gmail.com" && this.state.password === "sreekanth"){
+            this.props.dispatch({type: "USER_LOGIN", user:this.state});
             this.props.history.push('user');
         }
     }
@@ -94,5 +95,7 @@ class Login extends Component {
         )
     }
 }
-
-export default Login;
+function mapStateToProps(state) {
+    return state
+}
+export default connect(mapStateToProps)(Login);  
