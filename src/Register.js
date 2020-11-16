@@ -15,6 +15,19 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Copyright from './Copyright'
 class Register extends Component {
+  state = {
+    firstName:'',
+    lastName:"",
+    mobile:"",
+    address:"",
+      email:"",
+      password:"",
+      username:""
+  }
+  submitregister(){
+    this.props.dispatch({type: "USER_REG", user_details:this.state});
+    this.props.history.push('user');
+  }
     render(){
         return(
             <Container component="main" maxWidth="xs">
@@ -38,6 +51,7 @@ class Register extends Component {
                       id="firstName"
                       label="First Name"
                       autoFocus
+                      onChange={(e)=>this.setState({firstName:e.target.value})}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -49,6 +63,32 @@ class Register extends Component {
                       label="Last Name"
                       name="lastName"
                       autoComplete="lname"
+                      onChange={(e)=>this.setState({lastName:e.target.value})}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      autoComplete="fname"
+                      name="mobile"
+                      variant="outlined"
+                      required
+                      fullWidth
+                      id="mobile"
+                      label="Mobile Number"
+                      autoFocus
+                      onChange={(e)=>this.setState({mobile:e.target.value})}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      variant="outlined"
+                      required
+                      fullWidth
+                      id="address"
+                      label="Email Address"
+                      name="address"
+                      autoComplete="lname"
+                      onChange={(e)=>this.setState({email:e.target.value})}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -57,9 +97,10 @@ class Register extends Component {
                       required
                       fullWidth
                       id="email"
-                      label="Email Address"
-                      name="email"
-                      autoComplete="email"
+                      label="Username"
+                      name="username"
+                      autoComplete="username"
+                      onChange={(e)=>this.setState({username:e.target.value})}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -72,6 +113,7 @@ class Register extends Component {
                       type="password"
                       id="password"
                       autoComplete="current-password"
+                      onChange={(e)=>this.setState({password:e.target.value})}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -87,6 +129,7 @@ class Register extends Component {
                   variant="contained"
                   color="primary"
                   className='submit'
+                  onClick={()=>this.submitregister()}
                 >
                   Sign Up
                 </Button>
